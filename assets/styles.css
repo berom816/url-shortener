@@ -1,0 +1,25 @@
+html, body{
+    height:100%;
+    margin:0;
+    font-size:20px;
+    font-family: sans-serif;
+}
+
+p{
+    margin:.25em;
+}
+
+.content{
+    text-align:center;
+    min-height: 100%;
+    margin: 30px auto -50px;
+}
+
+input{
+    min-width:300px;
+}
+
+.footer,
+.push{
+    height:50px;
+}

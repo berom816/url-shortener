@@ -22,6 +22,7 @@ var shortURLSchema = new mongoose.Schema({
 var CondenseLink = mongoose.model('CondenseLink',shortURLSchema);
 
 app.use(express.static('./public'));
+app.use('/assets', express.static('assets'))
 
 app.set('view engine', 'ejs');
 
@@ -43,7 +44,7 @@ app.post('/',urlencodedParser,function(req,res){
                 CondenseLink.count({}, function(err, elementCount){
                     if(err) throw err;
                     CondenseLink({
-                        shortURL:"https://url-shortener-ndosm2017.c9users.io/"+(1000+elementCount+1), 
+                        shortURL:"https://fast-chamber-82848.herokuapp.com/"+(1000+elementCount+1), 
                         originalURL: holdReqBody.urlInput,
                         id:1000+elementCount+1
                     }).save(function(err) {
