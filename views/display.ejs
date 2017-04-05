@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+        <script src='/controller.js'></script>
+    </head>
+    <body>
+        <form method='POST' action='/'>
+            <p>Enter valid URL you want to shorten</p>
+            <input type='text' name='urlInput' placeholder='Please enter an URL' required/>
+            <button type='submit'>Submit</button>
+        </form>
+        <div>
+            <p>Shortened link: 
+                <span id='shortLink'>
+                    <%=message%>
+                    <a href=<%=targetURL%> target='_blank'>
+                        <%=url%>
+                    </a>
+                </span>
+            </p>
+        </div>
+    </body>
+</html>
