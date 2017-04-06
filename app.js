@@ -4,7 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-var validURL = require("./checkValidURL");
+var validURL = require("./urlFormats");
 
 //connect to mongoDB through mongoose
 var mongoose = require("mongoose");
@@ -37,11 +37,13 @@ app.get('/',function(req,res){
 //post request with the url entered as data
 app.post('/',urlencodedParser,function(req,res){
     //holds what's enter by the user
-    var holdReqBody = req.body;
+    var holdURL = req.body.urlInput;
     //check if it's an acceptable format of url
-    if(validURL.checkValidURL(holdReqBody.urlInput)){
+    if(validURL.checkValidURL(holdURL)){
+        //add http:// in front of website if needed, causes problem with redirect without it
+        holdURL = validURL.addHttps(holdURL);
         //search db to see if exact same url exists in the db already
-        var _newURL = CondenseLink.find({originalURL:holdReqBody.urlInput}, function(err, data){
+        var _newURL = CondenseLink.find({originalURL:holdURL}, function(err, data){
             if(err) throw err;
             //if found in db, display the shortened url from db
             if(data.length>0){
@@ -54,12 +56,12 @@ app.post('/',urlencodedParser,function(req,res){
                     //create the data in db, ID being count of data in db + 1
                     CondenseLink({
                         shortURL:"https://fast-chamber-82848.herokuapp.com/"+(1000+elementCount+1), 
-                        originalURL: holdReqBody.urlInput,
+                        originalURL:holdURL,
                         id:1000+elementCount+1
                     }).save(function(err) {
                         if(err)throw err;
                         //display the newly added data's shortURL to use
-                        CondenseLink.find({originalURL:holdReqBody.urlInput}, function(err, data){
+                        CondenseLink.find({originalURL:holdURL}, function(err, data){
                             if(err) throw err;
                             res.render('./display', {url:data[0].shortURL, message:'', targetURL:data[0].originalURL});
                         });
