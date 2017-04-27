@@ -6,7 +6,7 @@ module.exports.checkValidURL = function(str){
 }
 
 //add https to url if needed, causes problem with redirect if link to website without https or http
-module.exports.addHttps = function(url){
+module.exports.addHttp = function(url){
     //check if url contains https or http
     var re = /^([http]|[https])/g;
     if(re.test(url)){
