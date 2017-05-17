@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var shortURLSchema = new mongoose.Schema({
     shortURL:String,
     originalURL:String, 
-    id:Number
+    thisId:Number
 });
 
 //create db model

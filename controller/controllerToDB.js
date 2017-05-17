@@ -19,7 +19,7 @@ module.exports.countAndSaveNewURL = function(urlInput, callback){
         ShortURL({
             shortURL:"https://fast-chamber-82848.herokuapp.com/"+(1000+elementCount+1), 
             originalURL:urlInput,
-            id:1000+elementCount+1
+            thisId:1000+elementCount+1
         }).save(function(err){
             if(err) throw err;
             
@@ -34,7 +34,7 @@ module.exports.countAndSaveNewURL = function(urlInput, callback){
 
 //find the id inputted in the DB
 module.exports.findInDB = function(id, callback){
-    ShortURL.find({id:id}, function(err, data){
+    ShortURL.find({thisId:id}, function(err, data){
         if(err) throw err;
 
         if(data.length>0){
