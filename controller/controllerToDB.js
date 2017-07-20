@@ -19,7 +19,7 @@ module.exports.countAndSaveNewURL = function(urlInput, callback){
         ShortURL({
             shortURL:"https://fast-chamber-82848.herokuapp.com/"+(1000+elementCount+1), 
             originalURL:urlInput,
-            thisId:1000+elementCount+1
+            thisId:parseInt(1000+elementCount+1)
         }).save(function(err){
             if(err) throw err;
             

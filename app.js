@@ -5,7 +5,7 @@ var route = require("./route.js");
 //connect to mongoDB through mongoose
 var mongoose = require("mongoose");
 
-require("dotenv").load();
+// require("dotenv").load();
 
 //connect to DB
 mongoose.connect(process.env.MONGOLAB_URI);

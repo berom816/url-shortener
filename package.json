@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "url-shortener app",
   "main": "app.js",
+  "engines":{
+    "node":"6.11.1"
+  },
   "dependencies": {
     "body-parser": "^1.17.1",
     "dotenv": "^4.0.0",
